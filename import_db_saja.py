@@ -1,20 +1,16 @@
 import sqlite3
 import feedparser
 import requests
-from bs4 import BeautifulSoup
 import os
-import re
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timedelta
+from datetime import datetime
 
 # ==========================================================================
-# KONFIGURASI PATH
+# KONFIGURASI
 # ==========================================================================
 BASE_DIR = Path(__file__).parent.resolve()
-
-# ✅ FIX: Gunakan nama folder database_hasil5
-DB_PATH = str(BASE_DIR / "database_hasil5" / "database.sqlite") 
+DB_PATH = str(BASE_DIR / "database_hasil5" / "database.sqlite")
 RSS_FILE = str(BASE_DIR / "rss_list.txt")
 
 HEADERS = {
@@ -34,68 +30,22 @@ ADSTERRA_CODE = """
 # FUNGSI DATABASE
 # ==========================================================================
 def inisialisasi_database():
-    # Pastikan folder database ada
-    db_dir = os.path.dirname(DB_PATH)
-    os.makedirs(db_dir, exist_ok=True)
-    
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS artikel (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            link TEXT UNIQUE, 
-            judul TEXT, 
-            konten TEXT, 
-            gambar TEXT,
-            kategori TEXT DEFAULT 'other', 
-            tanggal_publish TEXT, 
-            tanggal_update TEXT
+            link TEXT UNIQUE, judul TEXT, konten TEXT, gambar TEXT,
+            tanggal_publish TEXT, tanggal_update TEXT
         )
     """)
-    
-    # Cek apakah kolom baru sudah ada
-    cursor.execute("PRAGMA table_info(artikel)")
-    columns = [col[1] for col in cursor.fetchall()]
-    if 'gambar' not in columns: cursor.execute("ALTER TABLE artikel ADD COLUMN gambar TEXT")
-    if 'kategori' not in columns: cursor.execute("ALTER TABLE artikel ADD COLUMN kategori TEXT DEFAULT 'other'")
-    if 'tanggal_publish' not in columns: cursor.execute("ALTER TABLE artikel ADD COLUMN tanggal_publish TEXT")
-    if 'tanggal_update' not in columns: cursor.execute("ALTER TABLE artikel ADD COLUMN tanggal_update TEXT")
-    
     conn.commit()
     conn.close()
 
 # ==========================================================================
-# FUNGSI SCRAPING
+# FUNGSI SCRAPING (TANPA FILTER WAKTU)
 # ==========================================================================
-def ekstrak_konten(url):
-    try:
-        response = requests.get(url, headers=HEADERS, timeout=5)
-        if response.status_code != 200: return None, None, None
-        
-        soup = BeautifulSoup(response.text, 'html.parser')
-
-        gambar = None
-        og_image = soup.find('meta', property='og:image') or soup.find('meta', attrs={'name': 'og:image'})
-        if og_image and og_image.get('content'): gambar = og_image['content']
-
-        tanggal = None
-        for meta_prop in ['article:published_time', 'article:modified_time', 'datePublished']:
-            meta = soup.find('meta', property=meta_prop) or soup.find('meta', attrs={'name': meta_prop})
-            if meta and meta.get('content'):
-                tanggal = meta['content']
-                break
-
-        paragraphs = soup.find_all('p')
-        teks_lengkap = []
-        for p in paragraphs:
-            text = p.get_text().strip()
-            if len(text) > 40 and not any(x in text.lower() for x in ['cookie', 'privacy policy', 'subscribe', 'all rights reserved', 'terms of use']):
-                teks_lengkap.append(f"<p>{text}</p>")
-
-        return "\n".join(teks_lengkap) if teks_lengkap else None, gambar, tanggal
-    except Exception:
-        return None, None, None
-
 def proses_feed(feed_url):
     feed_url = feed_url.strip()
     if not feed_url or feed_url.startswith("#"): return 0, 0
@@ -104,32 +54,45 @@ def proses_feed(feed_url):
     duplikat = 0
 
     try:
-        resp = requests.get(feed_url, headers=HEADERS, timeout=8)
+        # Timeout dipercepat agar tidak macet di situs mati
+        resp = requests.get(feed_url, headers=HEADERS, timeout=5)
         if resp.status_code != 200: return 0, 0
         
         feed = feedparser.parse(resp.content)
         conn = sqlite3.connect(DB_PATH, timeout=15)
         cursor = conn.cursor()
 
-        for entry in feed.entries[:5]:
+        # ✅ UBAH DISINI: Ambil maksimal 20 artikel (bukan 5)
+        for entry in feed.entries[:20]:
             link = entry.get('link', '')
             judul = entry.get('title', 'Tanpa Judul')
             if not link: continue
 
+            # Cek duplikat
             cursor.execute("SELECT id FROM artikel WHERE link = ?", (link,))
             if cursor.fetchone():
                 duplikat += 1
                 continue
 
-            html_teks, gambar, tanggal = ekstrak_konten(link)
-            if not html_teks:
-                html_teks = f"<p>{entry.get('summary', 'Konten tidak tersedia.')}</p>"
-
-            if not tanggal:
-                tanggal = datetime.now().isoformat()
-
+            # Fallback konten (tanpa buka URL untuk mempercepat)
+            summary = entry.get('summary', entry.get('description', 'Konten tidak tersedia.'))
+            
+            # Ambil gambar dari RSS jika ada
+            gambar = ""
+            if 'media_content' in entry and entry.media_content:
+                gambar = entry.media_content[0].get('url', '')
+            elif 'links' in entry:
+                for l in entry.links:
+                    if l.get('rel') == 'enclosure' and 'image' in l.get('type', ''):
+                        gambar = l.get('href', '')
+                        break
+            
             img_tag = f'<div style="text-align:center; margin-bottom:20px;"><img src="{gambar}" alt="{judul}" style="max-width:100%; height:auto;"></div>' if gambar else ""
-            konten_lengkap = f"{img_tag}\n{ADSTERRA_CODE}\n{html_teks}\n{ADSTERRA_CODE}"
+            konten_lengkap = f"{img_tag}\n{ADSTERRA_CODE}\n<div>{summary}</div>\n{ADSTERRA_CODE}"
+
+            tanggal = datetime.now().isoformat()
+            if hasattr(entry, 'published_parsed') and entry.published_parsed:
+                tanggal = datetime(*entry.published_parsed[:6]).isoformat()
 
             try:
                 cursor.execute(
@@ -138,8 +101,6 @@ def proses_feed(feed_url):
                 )
                 conn.commit()
                 baru += 1
-            except sqlite3.IntegrityError:
-                duplikat += 1
             except Exception:
                 pass
                 
@@ -154,7 +115,7 @@ def proses_feed(feed_url):
 # ==========================================================================
 if __name__ == "__main__":
     print("=" * 50)
-    print("MULAI IMPORT KE DATABASE")
+    print("MULAI IMPORT DATABASE (TANPA BATAS WAKTU)")
     print("=" * 50)
     
     if not os.path.exists(RSS_FILE):
@@ -170,7 +131,8 @@ if __name__ == "__main__":
     
     total_baru, total_duplikat = 0, 0
     
-    with ThreadPoolExecutor(max_workers=5) as executor:
+    # Gunakan 10 worker agar lebih cepat
+    with ThreadPoolExecutor(max_workers=10) as executor:
         futures = {executor.submit(proses_feed, url): url for url in rss_urls}
         for future in as_completed(futures):
             b, d = future.result()
