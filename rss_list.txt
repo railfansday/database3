@@ -1,24 +1,109 @@
-# ===== EROPA BARAT =====
+# ===== BAHASA INGGRIS (UTAMA) =====
 https://news.google.com/rss/search?q=automotive&hl=en-US&gl=US&ceid=US:en
-https://news.google.com/rss/search?q=automobile&hl=fr&gl=FR&ceid=FR:fr
-https://news.google.com/rss/search?q=automobil&hl=de&gl=DE&ceid=DE:de
-https://news.google.com/rss/search?q=automocion&hl=es&gl=ES&ceid=ES:es
-https://news.google.com/rss/search?q=automotive&hl=it&gl=IT&ceid=IT:it
-https://news.google.com/rss/search?q=automóvel&hl=pt-BR&gl=BR&ceid=BR:pt-419
+https://news.google.com/rss/search?q=car+news&hl=en-US&gl=US&ceid=US:en
+https://news.google.com/rss/search?q=electric+vehicle&hl=en-US&gl=US&ceid=US:en
+https://news.google.com/rss/search?q=car+review&hl=en-US&gl=US&ceid=US:en
+https://news.google.com/rss/search?q=automotive&hl=en-GB&gl=GB&ceid=GB:en
+https://news.google.com/rss/search?q=car+news&hl=en-GB&gl=GB&ceid=GB:en
+https://news.google.com/rss/search?q=automotive&hl=en-AU&gl=AU&ceid=AU:en
+https://news.google.com/rss/search?q=car+news&hl=en-AU&gl=AU&ceid=AU:en
+https://news.google.com/rss/search?q=automotive&hl=en-CA&gl=CA&ceid=CA:en
+https://news.google.com/rss/search?q=automotive&hl=en-IN&gl=IN&ceid=IN:en
+https://news.google.com/rss/search?q=car+news&hl=en-IN&gl=IN&ceid=IN:en
+https://news.google.com/rss/search?q=automotive&hl=en-SG&gl=SG&ceid=SG:en
+https://news.google.com/rss/search?q=automotive&hl=en-ZA&gl=ZA&ceid=ZA:en
+https://news.google.com/rss/search?q=automotive&hl=en-NG&gl=NG&ceid=NG:en
+https://news.google.com/rss/search?q=automotive&hl=en-KE&gl=KE&ceid=KE:en
 
-# ===== EROPA LAINNYA =====
-https://news.google.com/rss/search?q=automotive&hl=nl&gl=NL&ceid=NL:nl
-https://news.google.com/rss/search?q=automotive&hl=sv&gl=SE&ceid=SE:sv
-https://news.google.com/rss/search?q=automotive&hl=pl&gl=PL&ceid=PL:pl
-https://news.google.com/rss/search?q=automotive&hl=ru&gl=RU&ceid=RU:ru
-https://news.google.com/rss/search?q=automotive&hl=tr&gl=TR&ceid=TR:tr
+# ===== BAHASA INDONESIA =====
+https://news.google.com/rss/search?q=otomotif&hl=id&gl=ID&ceid=ID:id
+https://news.google.com/rss/search?q=mobil&hl=id&gl=ID&ceid=ID:id
+https://news.google.com/rss/search?q=motor&hl=id&gl=ID&ceid=ID:id
+https://news.google.com/rss/search?q=kendaraan+listrik&hl=id&gl=ID&ceid=ID:id
 
-# ===== ASIA =====
-https://news.google.com/rss/search?q=automotive&hl=ja&gl=JP&ceid=JP:ja
+# ===== BAHASA JEPANG =====
+https://news.google.com/rss/search?q=自動車&hl=ja&gl=JP&ceid=JP:ja
+https://news.google.com/rss/search?q=車&hl=ja&gl=JP&ceid=JP:ja
+https://news.google.com/rss/search?q=電気自動車&hl=ja&gl=JP&ceid=JP:ja
+
+# ===== BAHASA KOREA =====
 https://news.google.com/rss/search?q=자동차&hl=ko&gl=KR&ceid=KR:ko
-https://news.google.com/rss/search?q=汽车&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
-https://news.google.com/rss/search?q=汽車&hl=zh-TW&gl=TW&ceid=TW:zh-Hant
+https://news.google.com/rss/search?q=전기차&hl=ko&gl=KR&ceid=KR:ko
 
-# ===== TIMUR TENGAH & AFRIKA =====
-https://news.google.com/rss/search?q=automotive&hl=ar&gl=SA&ceid=SA:ar
-https://news.google.com/rss/search?q=automotive&hl=iw&gl=IL&ceid=IL:iw
+# ===== BAHASA MANDARIN (SIMPLIFIED & TRADITIONAL) =====
+https://news.google.com/rss/search?q=汽车&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+https://news.google.com/rss/search?q=电动汽车&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+https://news.google.com/rss/search?q=汽車&hl=zh-TW&gl=TW&ceid=TW:zh-Hant
+https://news.google.com/rss/search?q=汽車&hl=zh-HK&gl=HK&ceid=HK:zh-Hant
+
+# ===== BAHASA JERMAN =====
+https://news.google.com/rss/search?q=automobil&hl=de&gl=DE&ceid=DE:de
+https://news.google.com/rss/search?q=auto+news&hl=de&gl=DE&ceid=DE:de
+https://news.google.com/rss/search?q=elektroauto&hl=de&gl=DE&ceid=DE:de
+https://news.google.com/rss/search?q=automobil&hl=de&gl=AT&ceid=AT:de
+https://news.google.com/rss/search?q=automobil&hl=de&gl=CH&ceid=CH:de
+
+# ===== BAHASA PRANCIS =====
+https://news.google.com/rss/search?q=automobile&hl=fr&gl=FR&ceid=FR:fr
+https://news.google.com/rss/search?q=voiture&hl=fr&gl=FR&ceid=FR:fr
+https://news.google.com/rss/search?q=voiture+électrique&hl=fr&gl=FR&ceid=FR:fr
+https://news.google.com/rss/search?q=automobile&hl=fr&gl=BE&ceid=BE:fr
+https://news.google.com/rss/search?q=automobile&hl=fr&gl=CA&ceid=CA:fr
+
+# ===== BAHASA SPANYOL =====
+https://news.google.com/rss/search?q=automovil&hl=es&gl=ES&ceid=ES:es
+https://news.google.com/rss/search?q=coche&hl=es&gl=ES&ceid=ES:es
+https://news.google.com/rss/search?q=coche+eléctrico&hl=es&gl=ES&ceid=ES:es
+https://news.google.com/rss/search?q=automovil&hl=es-419&gl=MX&ceid=MX:es-419
+https://news.google.com/rss/search?q=automovil&hl=es-419&gl=AR&ceid=AR:es-419
+https://news.google.com/rss/search?q=automovil&hl=es-419&gl=CO&ceid=CO:es-419
+
+# ===== BAHASA ITALIA =====
+https://news.google.com/rss/search?q=automobile&hl=it&gl=IT&ceid=IT:it
+https://news.google.com/rss/search?q=auto+elettrica&hl=it&gl=IT&ceid=IT:it
+
+# ===== BAHASA PORTUGIS =====
+https://news.google.com/rss/search?q=automóvel&hl=pt-BR&gl=BR&ceid=BR:pt-419
+https://news.google.com/rss/search?q=carro&hl=pt-BR&gl=BR&ceid=BR:pt-419
+https://news.google.com/rss/search?q=carro+elétrico&hl=pt-BR&gl=BR&ceid=BR:pt-419
+https://news.google.com/rss/search?q=automóvel&hl=pt-150&gl=PT&ceid=PT:pt-150
+
+# ===== BAHASA RUSIA =====
+https://news.google.com/rss/search?q=автомобиль&hl=ru&gl=RU&ceid=RU:ru
+https://news.google.com/rss/search?q=электромобиль&hl=ru&gl=RU&ceid=RU:ru
+
+# ===== BAHASA ARAB =====
+https://news.google.com/rss/search?q=سيارة&hl=ar&gl=SA&ceid=SA:ar
+https://news.google.com/rss/search?q=سيارة&hl=ar&gl=AE&ceid=AE:ar
+https://news.google.com/rss/search?q=سيارة&hl=ar&gl=EG&ceid=EG:ar
+
+# ===== BAHASA TURKI =====
+https://news.google.com/rss/search?q=otomobil&hl=tr&gl=TR&ceid=TR:tr
+https://news.google.com/rss/search?q=elektrikli+araba&hl=tr&gl=TR&ceid=TR:tr
+
+# ===== BAHASA HINDI =====
+https://news.google.com/rss/search?q=कार&hl=hi&gl=IN&ceid=IN:hi
+https://news.google.com/rss/search?q=ऑटोमोबाइल&hl=hi&gl=IN&ceid=IN:hi
+
+# ===== BAHASA THAILAND =====
+https://news.google.com/rss/search?q=รถยนต์&hl=th&gl=TH&ceid=TH:th
+
+# ===== BAHASA VIETNAM =====
+https://news.google.com/rss/search?q=ô+tô&hl=vi&gl=VN&ceid=VN:vi
+https://news.google.com/rss/search?q=xe+điện&hl=vi&gl=VN&ceid=VN:vi
+
+# ===== BAHASA BELANDA =====
+https://news.google.com/rss/search?q=auto&hl=nl&gl=NL&ceid=NL:nl
+https://news.google.com/rss/search?q=elektrische+auto&hl=nl&gl=NL&ceid=NL:nl
+
+# ===== BAHASA SWEDIA =====
+https://news.google.com/rss/search?q=bil&hl=sv&gl=SE&ceid=SE:sv
+
+# ===== BAHASA POLANDIA =====
+https://news.google.com/rss/search?q=samochód&hl=pl&gl=PL&ceid=PL:pl
+
+# ===== BAHASA YUNANI =====
+https://news.google.com/rss/search?q=αυτοκίνητο&hl=el&gl=GR&ceid=GR:el
+
+# ===== BAHASA IBRANI =====
+https://news.google.com/rss/search?q=מכונית&hl=iw&gl=IL&ceid=IL:iw
