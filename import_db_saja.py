@@ -17,15 +17,6 @@ HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 }
 
-ADSTERRA_CODE = """
-<div style="text-align:center; margin:20px 0;">
-    <script type="text/javascript">
-        atOptions = {'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2','format' : 'iframe','height' : 90,'width' : 728,'params' : {}};
-    </script>
-    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
-</div>
-"""
-
 # ==========================================================================
 # FUNGSI DATABASE
 # ==========================================================================
@@ -44,7 +35,7 @@ def inisialisasi_database():
     conn.close()
 
 # ==========================================================================
-# FUNGSI SCRAPING (TANPA FILTER WAKTU)
+# FUNGSI SCRAPING (TANPA BATAS WAKTU)
 # ==========================================================================
 def proses_feed(feed_url):
     feed_url = feed_url.strip()
@@ -54,41 +45,44 @@ def proses_feed(feed_url):
     duplikat = 0
 
     try:
-        # Timeout dipercepat agar tidak macet di situs mati
-        resp = requests.get(feed_url, headers=HEADERS, timeout=5)
+        # Timeout 10 detik
+        resp = requests.get(feed_url, headers=HEADERS, timeout=10)
         if resp.status_code != 200: return 0, 0
         
         feed = feedparser.parse(resp.content)
         conn = sqlite3.connect(DB_PATH, timeout=15)
         cursor = conn.cursor()
 
-        # ✅ UBAH DISINI: Ambil maksimal 20 artikel (bukan 5)
-        for entry in feed.entries[:20]:
+        # Ambil semua artikel dari feed (Google News biasanya berisi 100 artikel)
+        for entry in feed.entries:
             link = entry.get('link', '')
             judul = entry.get('title', 'Tanpa Judul')
             if not link: continue
 
-            # Cek duplikat
             cursor.execute("SELECT id FROM artikel WHERE link = ?", (link,))
             if cursor.fetchone():
                 duplikat += 1
                 continue
 
-            # Fallback konten (tanpa buka URL untuk mempercepat)
-            summary = entry.get('summary', entry.get('description', 'Konten tidak tersedia.'))
+            # Karena Google News tidak menyediakan konten penuh, kita simpan ringkasannya saja
+            summary = entry.get('summary', 'Baca selengkapnya di sumber asli.')
             
-            # Ambil gambar dari RSS jika ada
+            # Gambar dari RSS (jika ada)
             gambar = ""
             if 'media_content' in entry and entry.media_content:
                 gambar = entry.media_content[0].get('url', '')
-            elif 'links' in entry:
-                for l in entry.links:
-                    if l.get('rel') == 'enclosure' and 'image' in l.get('type', ''):
-                        gambar = l.get('href', '')
-                        break
             
             img_tag = f'<div style="text-align:center; margin-bottom:20px;"><img src="{gambar}" alt="{judul}" style="max-width:100%; height:auto;"></div>' if gambar else ""
-            konten_lengkap = f"{img_tag}\n{ADSTERRA_CODE}\n<div>{summary}</div>\n{ADSTERRA_CODE}"
+            
+            konten_lengkap = f"""
+            {img_tag}
+            <div style="font-size: 16px; line-height: 1.8;">
+                {summary}
+                <p style="margin-top: 25px;">
+                    <a href="{link}" target="_blank" rel="nofollow">Baca artikel asli &rarr;</a>
+                </p>
+            </div>
+            """
 
             tanggal = datetime.now().isoformat()
             if hasattr(entry, 'published_parsed') and entry.published_parsed:
@@ -105,8 +99,8 @@ def proses_feed(feed_url):
                 pass
                 
         conn.close()
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"Error: {e}")
         
     return baru, duplikat
 
@@ -115,7 +109,7 @@ def proses_feed(feed_url):
 # ==========================================================================
 if __name__ == "__main__":
     print("=" * 50)
-    print("MULAI IMPORT DATABASE (TANPA BATAS WAKTU)")
+    print("MULAI IMPORT DATABASE (GOOGLE NEWS)")
     print("=" * 50)
     
     if not os.path.exists(RSS_FILE):
@@ -131,8 +125,7 @@ if __name__ == "__main__":
     
     total_baru, total_duplikat = 0, 0
     
-    # Gunakan 10 worker agar lebih cepat
-    with ThreadPoolExecutor(max_workers=10) as executor:
+    with ThreadPoolExecutor(max_workers=5) as executor:
         futures = {executor.submit(proses_feed, url): url for url in rss_urls}
         for future in as_completed(futures):
             b, d = future.result()
