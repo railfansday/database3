@@ -1,44 +1,4 @@
-# ===== MEDIA OTOMOTIF BESAR (VOLUME TINGGI) =====
-https://www.carscoops.com/feed/
-https://carbuzz.com/feed/
-https://www.motor1.com/rss/news/all/
-https://www.motor1.com/rss/reviews/all/
-https://www.autoblog.com/rss.xml
-https://www.caranddriver.com/rss/all.xml/
-https://www.roadandtrack.com/rss/all.xml/
-https://www.motortrend.com/feed/
-https://www.autoweek.com/rss/
-https://www.topspeed.com/feed/
-https://www.caranddriver.com/rss/news.xml
-
-# ===== KENDARAAN LISTRIK (EV) & TEKNOLOGI =====
-https://cleantechnica.com/feed/
-https://cleantechnica.com/category/clean-transport-2/electric-vehicles/feed/
-https://insideevs.com/rss/news/all/
-https://electrek.co/feed/
-https://www.greencarreports.com/rss/news
-https://www.autoevolution.com/rss/news.xml
-
-# ===== BERITA INDUSTRI & BISNIS OTOMOTIF =====
-https://auto.economictimes.indiatimes.com/rss/recentstories
-https://auto.economictimes.indiatimes.com/rss/topstories
-https://auto.economictimes.indiatimes.com/rss/passenger-vehicle
-https://auto.economictimes.indiatimes.com/rss/commercial-vehicle
-https://auto.economictimes.indiatimes.com/rss/auto-technology
-https://www.autonews.com/section/rss/news
-https://www.automotivenews.com/rss
-https://www.wardsauto.com/rss.xml
-https://www.autocar.co.uk/rss
-https://www.autoexpress.co.uk/car-news/feed
-
-# ===== MOTOR & KUSTOM =====
-https://www.bikeexif.com/feed
-https://www.motorcyclenews.com/rss/
-https://www.cyclenews.com/feed/
-https://www.motorcycle.com/rss/
-https://www.rideapart.com/rss/articles
-
-# ===== BERITA OTOMOTIF REGIONAL (AUSTRALIA/UK) =====
-https://www.goauto.com.au/rss/news/35.xml
-https://www.carsguide.com.au/rss/news
-https://www.drive.com.au/rss
+https://news.google.com/rss/search?q=automotive+news&hl=en-US&gl=US&ceid=US:en
+https://news.google.com/rss/search?q=electric+vehicles&hl=en-US&gl=US&ceid=US:en
+https://news.google.com/rss/search?q=car+industry&hl=en-US&gl=US&ceid=US:en
+https://news.google.com/rss/search?q=car+reviews&hl=en-US&gl=US&ceid=US:en
