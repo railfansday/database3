@@ -1,4 +1,24 @@
-https://news.google.com/rss/search?q=automotive+news&hl=en-US&gl=US&ceid=US:en
-https://news.google.com/rss/search?q=electric+vehicles&hl=en-US&gl=US&ceid=US:en
-https://news.google.com/rss/search?q=car+industry&hl=en-US&gl=US&ceid=US:en
-https://news.google.com/rss/search?q=car+reviews&hl=en-US&gl=US&ceid=US:en
+# ===== EROPA BARAT =====
+https://news.google.com/rss/search?q=automotive&hl=en-US&gl=US&ceid=US:en
+https://news.google.com/rss/search?q=automobile&hl=fr&gl=FR&ceid=FR:fr
+https://news.google.com/rss/search?q=automobil&hl=de&gl=DE&ceid=DE:de
+https://news.google.com/rss/search?q=automocion&hl=es&gl=ES&ceid=ES:es
+https://news.google.com/rss/search?q=automotive&hl=it&gl=IT&ceid=IT:it
+https://news.google.com/rss/search?q=automóvel&hl=pt-BR&gl=BR&ceid=BR:pt-419
+
+# ===== EROPA LAINNYA =====
+https://news.google.com/rss/search?q=automotive&hl=nl&gl=NL&ceid=NL:nl
+https://news.google.com/rss/search?q=automotive&hl=sv&gl=SE&ceid=SE:sv
+https://news.google.com/rss/search?q=automotive&hl=pl&gl=PL&ceid=PL:pl
+https://news.google.com/rss/search?q=automotive&hl=ru&gl=RU&ceid=RU:ru
+https://news.google.com/rss/search?q=automotive&hl=tr&gl=TR&ceid=TR:tr
+
+# ===== ASIA =====
+https://news.google.com/rss/search?q=automotive&hl=ja&gl=JP&ceid=JP:ja
+https://news.google.com/rss/search?q=자동차&hl=ko&gl=KR&ceid=KR:ko
+https://news.google.com/rss/search?q=汽车&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+https://news.google.com/rss/search?q=汽車&hl=zh-TW&gl=TW&ceid=TW:zh-Hant
+
+# ===== TIMUR TENGAH & AFRIKA =====
+https://news.google.com/rss/search?q=automotive&hl=ar&gl=SA&ceid=SA:ar
+https://news.google.com/rss/search?q=automotive&hl=iw&gl=IL&ceid=IL:iw
